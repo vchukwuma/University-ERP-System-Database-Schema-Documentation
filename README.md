@@ -19,3 +19,41 @@ This schema is designed to provide a structured and efficient way to manage univ
 
 - Retrieve all students enrolled in a specific course:
 
+```sql
+
+SELECT s.first_name, s.last_name
+FROM students s
+JOIN enrollments e ON s.stu_id = e.stu_id
+WHERE e.cour_id = :cour_id;
+```
+
+- Get the list of instructors in a specific department:
+
+```sql
+
+SELECT i.first_name, i.last_name
+FROM instructors i
+JOIN departments d ON i.inst_id = d.head_of_department
+WHERE d.depart_id = :depart_id;
+```
+
+- Generate a grade report for a student:
+
+ ```sql
+
+SELECT c.course_name, g.grade_value
+FROM grades g
+JOIN enrollments e ON g.enroll_id = e.enroll_id 
+JOIN courses c ON e.cour_id = c.cour_id
+WHERE e.stu_id = :stu_id;
+```
+
+### Conclusion
+
+This database schema serves as a foundational structure for managing university operations effectively. By utilizing this schema, you can ensure data consistency, integrity, and accessibility across various university functions.
+
+
+
+
+
+
